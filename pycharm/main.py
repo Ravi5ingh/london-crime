@@ -9,7 +9,8 @@ crime['Year'] = crime['Year'].apply(generate_customer_stage)
 
 crime = crime[crime['CrimeType']=='All recorded offences']
 
-crime.plot(x='Year')
+plot = crime.plot(x='Year')
+plot.set_ylabel('Number of Recorded Crimes')
 
 # crime.plot(x='Year', y='Harrow')
 # crime.plot(x='Year', y='Bexley')
