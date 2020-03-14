@@ -1,31 +1,49 @@
-import datetime
+from util import *
 
-def generate_customer_stage(dateString):
+import pandas as pd
+import matplotlib.pyplot as plt
+
+def plot_crime_by_type():
     """
-    Convert a year string like ('2008-09') to a date object
-     Parameters:
-        dateString(string): The date string
+    Plots crime in all boroughs by by type
+    """
+    crime = pd.read_csv('D:/Ravi/Documents/Udacity/Pipelines/london-crime/pycharm/data/LondonCrime.csv')
+    crime['Year'] = crime['Year'].apply(convert_date_string_to_date)
+    crime['London'] = crime['Inner London'] + crime['Outer London']
+
+    crime_by_type = pd.DataFrame({
+        'Year': crime['Year'].unique()
+    }, columns=['Year'])
+
+    defaultFractionChange = 0
+
+    crime_by_type['All Crimes'] = 100 * calc_on_consecutive_elements_in_column(crime[crime['CrimeType'] == 'All recorded offences'], 'London', lambda pair: (pair[1]-pair[0])/pair[0], defaultFractionChange)
+    crime_by_type['All Crimes'] = 100 * calc_on_consecutive_elements_in_column(crime[crime['CrimeType'] == 'Violence Against the Person'], 'London', lambda pair: (pair[1] - pair[0]) / pair[0], defaultFractionChange)
+    crime_by_type['Sexual Offences'] = 100 * calc_on_consecutive_elements_in_column(crime[crime['CrimeType'] == 'Sexual Offences'], 'London', lambda pair: (pair[1] - pair[0]) / pair[0], defaultFractionChange)
+    crime_by_type['Robbery'] = 100 * calc_on_consecutive_elements_in_column(crime[crime['CrimeType'] == 'Robbery'], 'London', lambda pair: (pair[1] - pair[0]) / pair[0], defaultFractionChange)
+    crime_by_type['Burglary'] = 100 * calc_on_consecutive_elements_in_column(crime[crime['CrimeType'] == 'Burglary'], 'London',lambda pair: (pair[1] - pair[0]) / pair[0], defaultFractionChange)
+    crime_by_type['Theft and Handling'] = 100 * calc_on_consecutive_elements_in_column(crime[crime['CrimeType'] == 'Theft and Handling'], 'London',lambda pair: (pair[1] - pair[0]) / pair[0], defaultFractionChange)
+    crime_by_type['Fraud or Forgery'] = 100 * calc_on_consecutive_elements_in_column(crime[crime['CrimeType'] == 'Fraud or Forgery'], 'London',lambda pair: (pair[1] - pair[0]) / pair[0], defaultFractionChange)
+    crime_by_type['Criminal Damage'] = 100 * calc_on_consecutive_elements_in_column(crime[crime['CrimeType'] == 'Criminal Damage'], 'London',lambda pair: (pair[1] - pair[0]) / pair[0], defaultFractionChange)
+    crime_by_type['Drugs'] = 100 * calc_on_consecutive_elements_in_column(crime[crime['CrimeType'] == 'Drugs'], 'London',lambda pair: (pair[1] - pair[0]) / pair[0], defaultFractionChange)
+    crime_by_type['Other Notifiables'] = 100 * calc_on_consecutive_elements_in_column(crime[crime['CrimeType'] == 'Other Notifiable Offences'], 'London',lambda pair: (pair[1] - pair[0]) / pair[0], defaultFractionChange)
+
+    plot = crime_by_type.plot(x='Year')
+    plot.set_ylabel('Percentage change in offences')
+
+    plt.show()
+
+def plot_crime_by_borough():
+    """
+    Plots all crime in london by borough
     """
 
-    swticher = {
-        '1999-00': datetime.datetime(1999, 1, 1),
-        '2000-01': datetime.datetime(2000, 1, 1),
-        '2001-02': datetime.datetime(2001, 1, 1),
-        '2002-03': datetime.datetime(2002, 1, 1),
-        '2003-04': datetime.datetime(2003, 1, 1),
-        '2004-05': datetime.datetime(2004, 1, 1),
-        '2005-06': datetime.datetime(2005, 1, 1),
-        '2006-07': datetime.datetime(2006, 1, 1),
-        '2007-08': datetime.datetime(2007, 1, 1),
-        '2008-09': datetime.datetime(2008, 1, 1),
-        '2009-10': datetime.datetime(2009, 1, 1),
-        '2010-11': datetime.datetime(2010, 1, 1),
-        '2011-12': datetime.datetime(2011, 1, 1),
-        '2012-13': datetime.datetime(2012, 1, 1),
-        '2013-14': datetime.datetime(2013, 1, 1),
-        '2014-15': datetime.datetime(2014, 1, 1),
-        '2015-16': datetime.datetime(2015, 1, 1),
-        '2016-17': datetime.datetime(2016, 1, 1),
-    }
+    crime = pd.read_csv('D:/Ravi/Documents/Udacity/Pipelines/london-crime/pycharm/data/LondonCrime.csv')
+    crime['Year'] = crime['Year'].apply(convert_date_string_to_date)
 
-    return swticher.get(dateString)
+    crime = crime[crime['CrimeType'] == 'All recorded offences']
+
+    plot = crime.plot(x='Year')
+    plot.set_ylabel('Number of Recorded Crimes')
+
+    plt.show()

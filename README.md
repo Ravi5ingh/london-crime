@@ -3,3 +3,6 @@ This is a series of visualizations of crime statistics in London. The data has b
 
 ## All Recorded Crime by Borough
 ![Crime](https://github.com/Ravi5ingh/london-crime/blob/master/pycharm/viz/AllCrimeByBorough.PNG?raw=true)
+
+## Year-on-year percentage change in London crime by type
+![Crime](https://github.com/Ravi5ingh/london-crime/blob/master/pycharm/viz/LondonCrimeByType.PNG?raw=true)
