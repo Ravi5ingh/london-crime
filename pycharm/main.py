@@ -5,6 +5,6 @@ import matplotlib.pyplot as plt
 
 # plot_crime_by_borough()
 
-# plot_crime_by_type()
+plot_crime_by_type()
 
-plot_crime_segments()
+# plot_crime_segments()
