@@ -47,8 +47,7 @@ def plot_crime_by_type():
 
     defaultFractionChange = 0
 
-    crime_by_type['All Crimes'] = 100 * calc_on_consecutive_elements_in_column(crime[crime['CrimeType'] == 'All recorded offences'], 'London', lambda pair: (pair[1]-pair[0])/pair[0], defaultFractionChange)
-    crime_by_type['All Crimes'] = 100 * calc_on_consecutive_elements_in_column(crime[crime['CrimeType'] == 'Violence Against the Person'], 'London', lambda pair: (pair[1] - pair[0]) / pair[0], defaultFractionChange)
+    crime_by_type['Violence Against the Person'] = 100 * calc_on_consecutive_elements_in_column(crime[crime['CrimeType'] == 'Violence Against the Person'], 'London', lambda pair: (pair[1] - pair[0]) / pair[0], defaultFractionChange)
     crime_by_type['Sexual Offences'] = 100 * calc_on_consecutive_elements_in_column(crime[crime['CrimeType'] == 'Sexual Offences'], 'London', lambda pair: (pair[1] - pair[0]) / pair[0], defaultFractionChange)
     crime_by_type['Robbery'] = 100 * calc_on_consecutive_elements_in_column(crime[crime['CrimeType'] == 'Robbery'], 'London', lambda pair: (pair[1] - pair[0]) / pair[0], defaultFractionChange)
     crime_by_type['Burglary'] = 100 * calc_on_consecutive_elements_in_column(crime[crime['CrimeType'] == 'Burglary'], 'London',lambda pair: (pair[1] - pair[0]) / pair[0], defaultFractionChange)
