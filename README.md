@@ -9,3 +9,6 @@ This is a series of visualizations of crime statistics in London. The data has b
 
 ## Crime in London over the years segmented by type
 ![Crime](https://github.com/Ravi5ingh/london-crime/blob/master/pycharm/viz/LondonCrimeSegments.PNG?raw=true)
+
+## Reported Crimes (Inner vs Outer London)
+![Crime](https://github.com/Ravi5ingh/london-crime/blob/master/pycharm/viz/InnerVsOuterLondon.PNG?raw=true)

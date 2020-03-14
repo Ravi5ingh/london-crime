@@ -5,6 +5,27 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.dates as dates
 
+def plot_inner_vs_outer_london():
+    """
+    Plots all reported crimes, inner vs outer London
+    """
+
+    crime = pd.read_csv('D:/Ravi/Documents/Udacity/Pipelines/london-crime/pycharm/data/LondonCrime.csv')
+
+    london_crime = pd.DataFrame()
+    london_crime['Year'] = crime['Year'].apply(convert_date_string_to_date)
+    london_crime['CrimeType'] = crime['CrimeType']
+    london_crime['Inner London'] = crime['Inner London']
+    london_crime['Outer London'] = crime['Outer London']
+
+    london_crime = london_crime[london_crime['CrimeType'] == 'All recorded offences']
+
+    plot = london_crime.plot(x='Year')
+    plot.set_ylabel('Number of Recorded Crimes')
+
+    plt.show()
+
+
 def plot_crime_segments():
 
     crime = pd.read_csv('D:/Ravi/Documents/Udacity/Pipelines/london-crime/pycharm/data/LondonCrime.csv')
