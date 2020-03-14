@@ -1,5 +1,5 @@
 # Crime in London
-This is a series of visualizations of crime statistics in London. The data has been sourced from the UK's govt. website
+This is a series of visualizations of crime statistics in London. Source: [data.gov.uk](https://data.gov.uk/dataset/ad907996-e983-4c9e-abde-8755ba12a6b4/metropolitan-police-service-recorded-crime-borough-rates)
 
 ## All Recorded Crime by Borough
 ![Crime](https://github.com/Ravi5ingh/london-crime/blob/master/pycharm/viz/AllCrimeByBorough.PNG?raw=true)
