@@ -5,7 +5,7 @@ import pandas as pd
 def calc_on_consecutive_elements_in_column(data_frame, column_name, function_to_perform, initial_value):
     """
     Given a column in a dataframe, performs a running calculation between subsequent elements in that column
-    and adds a new column with the result of this calculation
+    and returns this data with the initial value appended at the beginning
     (eg. Calculating percentage change)
     Parameters:
         data_frame (DataFrame): The data frame
@@ -14,8 +14,6 @@ def calc_on_consecutive_elements_in_column(data_frame, column_name, function_to_
         initial_value (object): The value of the first element in the resulting column
     Returns: The calculated column
     """
-
-    # (pair[1] - pair[0]) / pair[0]
 
     per = map(lambda pair: function_to_perform(pair), zip(data_frame[column_name], data_frame[column_name][1:]))
 
